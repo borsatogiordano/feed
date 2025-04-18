@@ -44,7 +44,7 @@ const posts = [
 
 function App() {
   return (
-    <div className="h-screen bg-stone-900 text-white">
+    <div className="min-h-screen bg-stone-900 text-white">
       <Header />
 
       <div className="mx-auto grid max-w-[70rem] grid-cols-1 items-start gap-6 p-4 lg:grid-cols-[256px_1fr]">

@@ -35,9 +35,15 @@ export function Post({ author, publishedAt, content }) {
     setNewCommentText('');
   }
 
+  function deleteComment(commentContent) {
+    setComments((prev) =>
+      prev.filter((comment) => comment.content !== commentContent)
+    );
+  }
+
   return (
     <article className="rounded-lg bg-stone-800 p-10">
-      <header className="flex justify-between items-center">
+      <header className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Avatar hasBorder img={author.avatarUrl} />
           <div className="flex flex-col justify-center">
@@ -58,11 +64,7 @@ export function Post({ author, publishedAt, content }) {
       <div className="mt-6 flex flex-col gap-4 text-stone-300">
         {content.map((line, index) => {
           if (line.type === 'paragraph') {
-            return (
-              <p key={index}>
-                {line.content}
-              </p>
-            );
+            return <p key={index}>{line.content}</p>;
           }
 
           if (line.type === 'link') {
@@ -99,7 +101,7 @@ export function Post({ author, publishedAt, content }) {
 
         <button
           disabled={!newCommentText.trim()}
-          className="w-fit rounded-md bg-[#00875F] px-6 py-4 font-bold transition-colors hover:bg-[#00b37E] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-fit rounded-md bg-[#00875F] px-6 py-4 font-bold transition-colors hover:bg-[#00b37E] disabled:cursor-not-allowed disabled:opacity-50"
           type="submit"
         >
           Comentar
@@ -107,7 +109,11 @@ export function Post({ author, publishedAt, content }) {
       </form>
 
       {comments.map((comment) => (
-        <Comment key={comment.id} content={comment.content} />
+        <Comment
+          key={comment.id}
+          content={comment.content}
+          deleteComment={deleteComment}
+        />
       ))}
     </article>
   );
