@@ -1,7 +1,14 @@
 import { ThumbsUp, Trash } from 'phosphor-react';
 import { Avatar } from './Avatar';
+import { useState } from 'react';
 
 export function Comment({ content, deleteComment }) {
+  const [applaudCount, setApplaudCount] = useState(0);
+
+  function handleApplaud() {
+    setApplaudCount(applaudCount + 1);
+  }
+
   function handleDeleteComment() {
     deleteComment(content);
   }
@@ -34,10 +41,14 @@ export function Comment({ content, deleteComment }) {
           </div>
         </div>
         <footer className="mt-2 flex flex-row gap-3 text-stone-400">
-          <button title="Curtir Comentário ">
+          <button
+            className="flex cursor-pointer flex-row items-center justify-center gap-3"
+            onClick={handleApplaud}
+            title="Curtir Comentário "
+          >
             <ThumbsUp></ThumbsUp>
+            <span>Aplaudir • {applaudCount}</span>
           </button>
-          <span>Aplaudir • 33</span>
         </footer>
       </main>
     </content>

@@ -88,7 +88,7 @@ export function Post({ author, publishedAt, content }) {
 
       <form
         onSubmit={handleCreateNewComment}
-        className="mt-6 flex flex-col gap-4 border-t border-t-stone-600 pt-6"
+        className="group mt-6 flex flex-col gap-4 border-t border-t-stone-600 pt-6"
       >
         <strong className="font-bold">Deixe seu feedback</strong>
         <textarea
@@ -101,7 +101,7 @@ export function Post({ author, publishedAt, content }) {
 
         <button
           disabled={!newCommentText.trim()}
-          className="w-fit rounded-md bg-[#00875F] px-6 py-4 font-bold transition-colors hover:bg-[#00b37E] disabled:cursor-not-allowed disabled:opacity-50"
+          className="hidden w-fit rounded-md bg-[#00875F] px-6 py-4 font-bold transition-colors group-focus-within:block hover:bg-[#00b37E] disabled:cursor-not-allowed disabled:opacity-50"
           type="submit"
         >
           Comentar
